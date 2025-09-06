@@ -1,6 +1,6 @@
 import json
 
-from structures import RefreshInterval, DiskUsage
+from util import RefreshInterval, DiskUsage
 
 
 class Config:

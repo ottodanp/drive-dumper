@@ -2,15 +2,15 @@
   "path": "C:\\",
   "interval": "SEC_5",
   "used_threshold": "LOW",
-  "file_directory": "C:\\Users\\ottod\\Desktop\\Projects\\DriveDumper\\media",
+  "file_directory": "C:\\Users\\ottod\\PycharmProjects\\drive-dumper\\media",
   "dump_directories": [
     {
-      "source": "C:\\Users\\ottod\\Desktop\\Projects\\DriveDumper\\media\\RustroverProjects",
+      "source": "C:\\Users\\ottod\\PycharmProjects\\drive-dumper\\media\\RustroverProjects",
       "target": "",
       "host": "LOCAL"
     },
     {
-      "source": "C:\\Users\\ottod\\Desktop\\Projects\\DriveDumper\\media\\RustroverProjects",
+      "source": "C:\\Users\\ottod\\PycharmProjects\\drive-dumper\\media\\RustroverProjects",
       "target": "",
       "host": "12.168.1.104:22"
     }

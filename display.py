@@ -1,5 +1,5 @@
 from config import Config
-from structures import SizeDivisor
+from util import SizeDivisor
 
 DIVISOR_EXTENSIONS = {
     SizeDivisor.GB: "GB",

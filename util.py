@@ -1,4 +1,6 @@
 from enum import Enum
+from time import perf_counter
+from typing import Tuple, Any
 
 
 class RefreshInterval(Enum):
@@ -38,3 +40,27 @@ class SizeDivisor(Enum):
     KB = 1024
     MB = 1024 ** 2
     GB = 1024 ** 3
+
+
+def timer_sync(func):
+    def wrapper(*args, **kwargs) -> Tuple[Any, float]:
+        start = perf_counter()
+        result = func(*args, **kwargs)
+        end = perf_counter()
+
+        exec_time = end - start
+
+        return result, exec_time
+
+    return wrapper
+
+
+async def timer_async(func):
+    async def wrapper(*args, **kwargs) -> Tuple[Any, float]:
+        start = perf_counter()
+        result = await func(*args, **kwargs)
+        end = perf_counter()
+        exec_time = end - start
+        return result, exec_time
+
+    return wrapper
