@@ -1,4 +1,4 @@
-# 
+# Valid Refresh Interval Values
 - SEC
 - SEC_10
 - SEC_15
