@@ -1,0 +1,16 @@
+{
+  "path": "C:\\",
+  "interval": "SEC_5",
+  "used_threshold": "LOW",
+  "file_directory": "C:\\Users\\ottod\\PycharmProjects\\drive-dumper\\monitor\\files",
+  "remote_host": "127.0.0.1:5000",
+  "sender_threads": 300,
+  "display_chunk_size": 500,
+  "dump_directories": [
+    {
+      "source": "",
+      "target": "uploads",
+      "host": "127.0.0.1:5000"
+    }
+  ]
+}

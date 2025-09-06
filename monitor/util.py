@@ -42,6 +42,11 @@ class SizeDivisor(Enum):
     GB = 1024 ** 3
 
 
+class QueuedFile:
+    _file_path: str
+    _target_directory: str
+
+
 def timer_sync(func):
     def wrapper(*args, **kwargs) -> Tuple[Any, float]:
         start = perf_counter()
