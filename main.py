@@ -1,6 +1,6 @@
 from asyncio import run, Queue, gather, sleep
 from os import listdir, cpu_count
-from os.path import isfile, join, getsize
+from os.path import isfile, isdir, join, getsize
 from shutil import disk_usage
 from typing import Tuple
 
@@ -32,9 +32,11 @@ async def get_directory_items(directory: str, file_queue: Queue, directory_queue
             await file_queue.put(absolute_path)
             files_found += 1
             total_bytes += getsize(absolute_path)
-        else:
+        elif isdir(absolute_path):
             await directory_queue.put(absolute_path)
             directories_found += 1
+        else:
+            print(f"Skipping {absolute_path}")
 
     return files_found, directories_found, total_bytes
 

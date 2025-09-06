@@ -47,7 +47,6 @@ def timer_sync(func):
         start = perf_counter()
         result = func(*args, **kwargs)
         end = perf_counter()
-
         exec_time = end - start
 
         return result, exec_time
