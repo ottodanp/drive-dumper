@@ -55,7 +55,7 @@ def timer_sync(func):
     return wrapper
 
 
-async def timer_async(func):
+def timer_async(func):
     async def wrapper(*args, **kwargs) -> Tuple[Any, float]:
         start = perf_counter()
         result = await func(*args, **kwargs)

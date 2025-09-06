@@ -1,12 +1,12 @@
+from asyncio import run, Queue, gather, sleep
 from os import listdir, cpu_count
 from os.path import isfile, join, getsize
-from asyncio import run, Queue, gather, sleep
 from shutil import disk_usage
 from typing import Tuple
 
 from config import Config
 from display import Display
-from util import DiskUsage
+from util import DiskUsage, timer_async
 
 
 class DiskFull(Exception):
@@ -53,7 +53,8 @@ async def item_gatherer_worker(file_queue: Queue, directory_queue: Queue):
     return files_found, directories_found, file_size
 
 
-async def get_items(file_directory: str, display: Display):
+@timer_async
+async def get_items(file_directory: str) -> Tuple[int, int, int]:
     file_queue = Queue()
     directory_queue = Queue()
 
@@ -64,7 +65,7 @@ async def get_items(file_directory: str, display: Display):
         directories_found += directories
         file_size += num_bytes
 
-    display.print_stats(files_found, directories_found, file_size)
+    return files_found, directories_found, file_size
 
 
 def disk_monitor(path: str, used_threshold: DiskUsage = DiskUsage.VERY_HIGH):
@@ -79,9 +80,10 @@ async def monitor_thread(config: Config, display: Display):
             disk_monitor(config.path, config.used_threshold)
             await sleep(config.interval.value)
         except DiskFull:
-            print("Disk is full, moving files")
-            await get_items(config.file_directory, display)
-        await sleep(config.interval.value)
+            display.disk_full_notification()
+            (files, directories, size), exec_time = await get_items(config.file_directory)
+            display.print_stats(files, directories, size, exec_time)
+            await sleep(config.interval.value)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,22 @@
+# 
+- SEC
+- SEC_10
+- SEC_15
+- SEC_20
+- SEC_25
+- SEC_30
+- SEC_45
+- SEC_50
+- MIN_1
+- MIN_5
+- MIN_15
+- MIN_30
+- HOUR_1
+- HOUR_6
+- HOUR_12
+- DAY_1
+- DAY_3
+- DAY_7
+- DAY_30
+- DAY_90
+- DAY_180

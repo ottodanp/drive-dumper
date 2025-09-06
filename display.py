@@ -15,8 +15,8 @@ class Display:
     def __init__(self):
         return
 
-    def print_stats(self, files: int, directories: int, size: int) -> None:
-        print(f"{files} files, {directories} directories, {self.format_bytes(size)}")
+    def print_stats(self, files: int, directories: int, size: int, time: float) -> None:
+        print(f"Found {files} files and {directories} directories ({self.format_bytes(size)}) in {time:.2f} seconds.")
 
     def format_bytes(self, size: int) -> str:
         if size > SizeDivisor.GB.value:
@@ -29,6 +29,10 @@ class Display:
             div = SizeDivisor.BYTES
 
         return f"{self.calculate_size(size, div)}{DIVISOR_EXTENSIONS[div]}"
+
+    @staticmethod
+    def disk_full_notification():
+        print("Disk is full, moving files")
 
     @staticmethod
     def calculate_size(size: int, divisor: SizeDivisor) -> float:
